@@ -17,4 +17,9 @@ router.get('/user', checkAuthorization(), userApi.getSelf);
 const peopleDemoApi = require('../apis/people-demo-api');
 router.get('/people', checkAuthorization(), peopleDemoApi.getPeople);
 
+const salesApi = require('../apis/salesmen-api');
+router.post('/addsalesman',salesApi.addSalesman);
+
+router.get('/getsalesmen',salesApi.getSalesMen);
+
 module.exports = router;
