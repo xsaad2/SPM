@@ -27,4 +27,11 @@ router.get('/salesman/byname/:firstname/:lastname',salesApi.getSalesManByFirstAn
 router.delete('/salesman/byid/:_id',salesApi.deleteSalesManById);
 router.delete('/salesman/byname/:firstname/:lastname',salesApi.getSalesManByFirstAndLastName);
 
+const evalrecordsApi = require('../apis/evalrecord-api');
+router.post('/addevalrecord',evalrecordsApi.addEvalRecord);
+router.put('/updateevalrecord/:_id',evalrecordsApi.updateEvalRecord);
+router.get('/evalrecords',evalrecordsApi.getEvalRecords);
+router.get('/evalrecord/byyear/:year',evalrecordsApi.getEvalRecordByYear);
+router.get('/evalrecord/byid/:_id',evalrecordsApi.getEvalRecordById);
+router.delete('/evalrecord/byid/:_id',evalrecordsApi.deleteEvalRecordById);
 module.exports = router;
