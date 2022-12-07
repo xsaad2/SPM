@@ -4,15 +4,12 @@
  * @param {SalesMan} salesMan new salesMan
  * @return {Promise<any>}
  */
-createSalesMan = async function (db, salesMan){
-    return (await db.collection('sales-men').insertOne(salesMan)).insertedId; //return unique ID
-}
+const SalesMan = require("../models/SalesMan");
+const salesmanService = require("../services/salesman-service")
 
 
 exports.addSalesman = async function (req, res){
     const db = req.app.get('db');//get database
-
-    const SalesMan = require("../models/SalesMan");
 
     const newSalesMan = new SalesMan(
         req.body.firstname,
@@ -20,18 +17,47 @@ exports.addSalesman = async function (req, res){
         req.body.email,
         req.body.evalRecord
     )
-    this.createSalesMan(db, newSalesMan);
+    await salesmanService.createSalesMan(db, newSalesMan);
     res.send('created successfully');
     console.log('created salesman');
 }
 
-getAllSalesMen = async function(db){
-    return (await db.collection('sales-men').find({}));
-}
-
-exports.getSalesMen = function (req, res) {
-
+exports.updateSalesMen = async function (req, res) {
     const db = req.app.get('db');//get database
-    res.send(this.getAllSalesMen(db));
 
+    const newSalesMan = new SalesMan(
+        req.body.firstname,
+        req.body.lastname,
+        req.body.email,
+        req.body.evalRecord
+    )
+    await salesmanService.updateSalesMan(db,req.params._id, newSalesMan);
+    res.send('updated successfully');
+    console.log('updated salesman');
 }
+
+exports.getSalesMen = async function (req, res) {
+    const db = req.app.get('db');//get database
+    res.send(await salesmanService.getAllSalesMen(db));
+}
+
+exports.getSalesManByEmail = async function (req, res) {
+    const db = req.app.get('db');//get database
+    res.send(await salesmanService.getSalesManByEmail(db, req.params.email));
+}
+
+exports.getSalesManById = async function (req, res) {
+    const db = req.app.get('db');//get database
+    res.send(await salesmanService.getSalesManById(db, req.params._id));
+}
+
+exports.getSalesManByFirstAndLastName = async function (req, res) {
+    const db = req.app.get('db');//get database
+    res.send(await salesmanService.getSalesManByFirstAndLastName(db, req.params.firstname,req.params.lastname));
+}
+
+exports.deleteSalesManById = async function (req, res) {
+    const db = req.app.get('db');//get database
+    res.send(await salesmanService.deleteSalesManById(db, req.params._id));
+}
+
