@@ -1,4 +1,4 @@
-class SalesMan{
+class EvalRecord{
     constructor(desc, year,targetValue, actualValue) {
         this._id = undefined;
         this.desc = desc;
@@ -8,4 +8,4 @@ class SalesMan{
     }
 }
 
-module.exports = SalesMan;
+module.exports = EvalRecord;
