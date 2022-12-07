@@ -20,7 +20,7 @@ exports.getAllSalesMen = async function(db){
 }
 
 exports.getSalesManByEmail = async function(db, email){
-    return (await db.collection('sales-men').find({email : email}).toArray());
+    return (await db.collection('sales-men').findOne({email : email}));
 }
 
 exports.getSalesManById = async function(db, id){
