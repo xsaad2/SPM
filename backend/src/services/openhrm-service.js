@@ -30,9 +30,6 @@ async function res() {
   } catch (error) {
     console.error("Could not get Token because OpenHRm is not available;");
   }
-  /*if (res.data.error) {
-    throw Error(res.data.error);
-  }*/
 }
 res();
 exports.getEmployeesFromOpenHRM = async function (db) {
@@ -88,4 +85,37 @@ exports.getBonusFromOpenHRM = async function (db, id) {
     console.error("OpenHRM is Not Available: " + error);
     res();
   }
+};
+exports.getBonusFromOpenHRM = async function (db, id) {
+  console.log("in getBonusFromOpenHRM");
+  let response = null;
+  try {
+    response = await axios.get(`${baseUrl}/api/v1/employee/${id}/bonussalary`, {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    });
+    return response.data.data;
+  } catch (error) {
+    console.error("OpenHRM is Not Available: " + error);
+    res();
+  }
+};
+exports.addBonusToOrangeHRM = async function (db, bonus) {
+  newbonus = { year: bonus.yearOfPerf, value: bonus.totalBonus };
+  const contactDetails = await axios.post(
+    `${baseUrl}/api/v1/employee/3/bonussalary`,
+    newbonus,
+    {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+    }
+  );
+  const data = contactDetails;
+  console.log(contactDetails.data.data);
 };

@@ -58,7 +58,7 @@ exports.deletePendingBonusFromDb = async function (db, bonus) {
 };
 
 exports.addApprovedBonusToDb = async function (db, bonus) {
-  //await openhrmService.getBonusFromOpenHRM(db,id);
+  await openhrmService.addBonusToOrangeHRM(db, bonus);
   return await db.collection("approved-bonuses").insertOne(bonus).insertedId;
 };
 
