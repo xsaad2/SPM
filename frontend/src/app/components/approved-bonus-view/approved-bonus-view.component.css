@@ -1,0 +1,44 @@
+.container{
+  display: block;
+  margin-left: 8%;
+  justify-content: center;
+  align-items: center;
+}
+.detailscont{
+    box-sizing: border-box;
+    border: black solid 2px;
+    width: 350px;
+}
+.orderscont,.socialcont{
+    box-sizing: border-box;
+    border: black solid 2px;
+    margin-top: 15px;
+}
+.summary{
+    box-sizing: border-box;
+    border: black solid 2px;
+    margin-top: 15px;
+    width: 60%;
+}
+#orderstab{
+    border-collapse: collapse; /* merge the borders between cells */
+    width: 100%; /* set the width of the table */
+}
+#orderstab th,#orderstab td {
+    border: 1px solid black; /* add a solid black border to all cells */
+    padding: 8px; /* add some padding inside the cells */
+  }
+#socialtab th,#socialtab td{
+    border: 1px solid black; /* add a solid black border to all cells */
+    padding: 8px; /* add some padding inside the cells */
+  }
+  .aprvbtn{
+    background-color: #4CAF50;
+    color: white;
+    margin-top: 20px;
+    margin-right: 10px;
+    
+  }
+  .decbtn{
+    margin-top: 20px;
+  }

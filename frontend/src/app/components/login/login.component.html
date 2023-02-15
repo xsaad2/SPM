@@ -1,10 +1,33 @@
-<mat-form-field appearance="fill">
-  <mat-label>username</mat-label>
-  <input type="text" [(ngModel)]="credentials.username" name="username" matInput> <!-- [(ngModel)] creates a two-way binding between input & variable -->
-</mat-form-field>
-<mat-form-field appearance="fill">
-  <mat-label>password</mat-label>
-  <input type="password" (keydown.enter)="performLogin()" [(ngModel)]="credentials.password" name="password" matInput> <!-- (keydown.enter) specifies an event-handler for pressing the enter key, while this input is focussed -->
-</mat-form-field>
-<span class="error" *ngIf="loginError">{{loginError}}</span>
-<button class="login" (click)="performLogin()" mat-raised-button color="primary">Log in</button> <!-- (click) creates a one-way output-binding, which is invoked by click events  -->
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <h2 class="active">Sign In</h2>
+
+        <!-- Login Form -->
+        <form>
+            <input
+                type="text"
+                id="login"
+                class="fadeIn second"
+                name="login"
+                placeholder="username"
+                [(ngModel)]="credentials.username"
+            />
+            <input
+                type="text"
+                id="password"
+                class="fadeIn third"
+                name="login"
+                (keydown.enter)="performLogin()"
+                placeholder="password"
+                [(ngModel)]="credentials.password"
+            />
+            <input
+                (click)="performLogin()"
+                type="submit"
+                class="fadeIn fourth"
+                value="Log In"
+            />
+        </form>
+    </div>
+</div>

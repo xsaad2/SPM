@@ -1,0 +1,61 @@
+<div class="container">
+    <table
+        mat-table
+        [dataSource]="datasource"
+        class="mat-elevation-z8"
+        aria-label="Pending Bonuses"
+    >
+        <ng-container matColumnDef="header">
+            <th class="titlecell" mat-header-cell *matHeaderCellDef colspan="5">
+                <p>Pending Bonuses for: {{ salesmanName }}</p>
+            </th>
+        </ng-container>
+        <ng-container matColumnDef="yearOfPerf">
+            <th mat-header-cell *matHeaderCellDef>Year of Performace</th>
+            <td mat-cell *matCellDef="let bonus">
+                {{ bonus.yearOfPerf }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="totalOrderBonus">
+            <th mat-header-cell *matHeaderCellDef>Total Orders Bonus</th>
+            <td mat-cell *matCellDef="let bonus">
+                {{ bonus.totalOrderBonus }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="totalbonusAmount">
+            <th mat-header-cell *matHeaderCellDef>Total Social Bonus</th>
+            <td mat-cell *matCellDef="let bonus">
+                {{ bonus.socialPer.totalbonusAmount }}
+            </td>
+        </ng-container>
+        <ng-container matColumnDef="totalBonus">
+            <th mat-header-cell *matHeaderCellDef>Total Bonus</th>
+            <td mat-cell *matCellDef="let bonus">
+                {{ bonus.totalBonus }}
+            </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>Actions</th>
+            <td mat-cell *matCellDef="let bonus">
+                <button
+                    (click)="onReview(bonus)"
+                    mat-raised-button
+                    color="primary"
+                >
+                    Review
+                </button>
+            </td>
+        </ng-container>
+
+        <tr class="headerrow" mat-header-row *matHeaderRowDef="['header']"></tr>
+        <tr
+            mat-header-row
+            *matHeaderRowDef="displayedColumns; sticky: true"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns">
+            <p *ngIf="datasource.length <= 0">No Pending Bonuses</p>
+        </tr>
+    </table>
+</div>

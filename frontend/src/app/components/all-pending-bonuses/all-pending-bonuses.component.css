@@ -1,0 +1,15 @@
+.mat-header-cell{
+    background-color: #ADD8E6;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.mat-elevation-z8{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    
+}
+.container{
+    margin: 10px;
+}

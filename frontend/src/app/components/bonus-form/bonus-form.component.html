@@ -1,0 +1,292 @@
+<h1 class="bonush1">Add New Bonus</h1>
+<mat-stepper [linear]="false" orientation="vertical" #stepper>
+    <!--1st Step: Bonus employee details-->
+    <mat-step [stepControl]="detailsForm">
+        <form [formGroup]="detailsForm" (ngSubmit)="onDetailsSubmit()">
+            <ng-template matStepLabel>Details</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Year of Performance</mat-label>
+                <input placeholder="Year" matInput formControlName="year" />
+                <mat-error *ngIf="detailsForm.get('year').hasError('required')">
+                    this field is required
+                </mat-error>
+                <mat-error *ngIf="detailsForm.get('year').hasError('pattern')">
+                    Please Give a valid year, Ex: 2012
+                </mat-error>
+            </mat-form-field>
+            <button
+                class="submitBtn"
+                mat-button
+                color="primary"
+                [disabled]="detailsForm.invalid"
+                matStepperNext
+            >
+                Submit
+            </button>
+        </form>
+    </mat-step>
+
+    <!--2nd Step: Order Evaluation-->
+    <mat-step [stepControl]="ordersForm">
+        <form [formGroup]="ordersForm" (ngSubmit)="onSubmit()">
+            <ng-template matStepLabel>Order Evaluation</ng-template>
+            <mat-form-field appearance="fill">
+                <mat-label>Product Name</mat-label>
+                <mat-select formControlName="productName">
+                    <mat-option
+                        *ngFor="let product of products"
+                        [value]="product.name"
+                    >
+                        {{ product.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Client Name</mat-label>
+                <mat-select
+                    formControlName="clientName"
+                    (ngModelChange)="updateInputValue($event)"
+                >
+                    <mat-option
+                        *ngFor="let account of accounts"
+                        [value]="account.fullName"
+                    >
+                        {{ account.fullName }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Client Rating</mat-label>
+                <input
+                    matInput
+                    [(ngModel)]="ratingValue"
+                    formControlName="clientRating"
+                    readonly
+                />
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Number of Items</mat-label>
+                <input matInput formControlName="nbrOfItems" />
+                <mat-error
+                    *ngIf="
+                        ordersForm.get('nbrOfItems').hasError('required') &&
+                        ordersForm.get('nbrOfItems').touched
+                    "
+                >
+                    Number of items is required
+                </mat-error>
+                <mat-error
+                    *ngIf="
+                        ordersForm.get('nbrOfItems').hasError('pattern') &&
+                        ordersForm.touched
+                    "
+                >
+                    Only numbers are allowed
+                </mat-error>
+            </mat-form-field>
+            <button
+                class="submitBtn"
+                mat-raised-button
+                color="primary"
+                [disabled]="ordersForm.invalid"
+            >
+                Submit
+            </button>
+        </form>
+        <table class="orders-table">
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Client Name</th>
+                    <th>Client Rating</th>
+                    <th>Number of Items</th>
+
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let order of orders; index as i">
+                    <td>{{ order.productName }}</td>
+                    <td>{{ order.clientName }}</td>
+                    <td>{{ order.clientRating }}</td>
+                    <td>{{ order.nbrOfItems }}</td>
+
+                    <td>
+                        <button
+                            mat-button
+                            color="warn"
+                            (click)="deleteOrder(i)"
+                        >
+                            Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </mat-step>
+    <!--3nd Step: Social Performance Evaluation-->
+    <mat-step [stepControl]="socialForm">
+        <form [formGroup]="socialForm" (ngSubmit)="onSocialSubmit()">
+            <ng-template matStepLabel [hidden]="orders.length < 1"
+                >Social Performance Evaluation</ng-template
+            >
+
+            <mat-form-field appearance="fill">
+                <mat-label>Leadership Competence</mat-label>
+                <input
+                    placeholder="Target vlaue:4"
+                    matInput
+                    formControlName="leadership"
+                />
+                <mat-error
+                    *ngIf="socialForm.get('leadership').hasError('required')"
+                >
+                    this field is required
+                </mat-error>
+                <mat-error
+                    *ngIf="socialForm.get('leadership').hasError('pattern')"
+                >
+                    Please give in one digit
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Openness to employees</mat-label>
+                <input
+                    placeholder="Target vlaue:4"
+                    matInput
+                    formControlName="openness"
+                />
+                <mat-error
+                    *ngIf="socialForm.get('openness').hasError('required')"
+                >
+                    this field is required
+                </mat-error>
+                <mat-error
+                    *ngIf="socialForm.get('openness').hasError('pattern')"
+                >
+                    Please give in one digit
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Social behaviour to employees</mat-label>
+                <input
+                    placeholder="Target vlaue:4"
+                    matInput
+                    formControlName="behaviour"
+                />
+                <mat-error
+                    *ngIf="socialForm.get('behaviour').hasError('required')"
+                >
+                    this field is required
+                </mat-error>
+                <mat-error
+                    *ngIf="socialForm.get('behaviour').hasError('pattern')"
+                >
+                    Please give in one digit
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Attitude towards clients</mat-label>
+                <input
+                    placeholder="Target vlaue:4"
+                    matInput
+                    formControlName="attitude"
+                />
+                <mat-error
+                    *ngIf="socialForm.get('attitude').hasError('required')"
+                >
+                    this field is required
+                </mat-error>
+                <mat-error
+                    *ngIf="socialForm.get('attitude').hasError('pattern')"
+                >
+                    Please give in one digit
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Communication skills</mat-label>
+                <input
+                    placeholder="Target vlaue:4"
+                    matInput
+                    formControlName="communication"
+                />
+                <mat-error
+                    *ngIf="socialForm.get('communication').hasError('required')"
+                >
+                    this field is required
+                </mat-error>
+                <mat-error
+                    *ngIf="socialForm.get('communication').hasError('pattern')"
+                >
+                    Please give in one digit
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Integrity to company</mat-label>
+                <input
+                    placeholder="Target vlaue:4"
+                    matInput
+                    formControlName="integrity"
+                />
+                <mat-error
+                    *ngIf="socialForm.get('integrity').hasError('required')"
+                >
+                    this field is required
+                </mat-error>
+                <mat-error
+                    *ngIf="socialForm.get('integrity').hasError('pattern')"
+                >
+                    Please give in one digit
+                </mat-error>
+            </mat-form-field>
+
+            <button
+                class="submitBtn"
+                mat-button
+                color="primary"
+                [disabled]="socialForm.invalid"
+                matStepperNext
+            >
+                Submit
+            </button>
+        </form>
+    </mat-step>
+    <!--4th Step: Final Remarks-->
+    <mat-step [stepControl]="remarksForm">
+        <form [formGroup]="remarksForm" (ngSubmit)="onRemarksSubmit()">
+            <ng-template matStepLabel [hidden]="orders.length < 1"
+                >Final Remarks</ng-template
+            >
+            <mat-form-field appearance="fill">
+                <textarea
+                    placeholder="your Remarks"
+                    matInput
+                    formControlName="remarks"
+                ></textarea>
+                <mat-error
+                    *ngIf="remarksForm.get('remarks').hasError('required')"
+                >
+                    this field is required
+                </mat-error>
+            </mat-form-field>
+            <p>{{ remarks }}</p>
+            <button
+                class="submitBtn"
+                mat-button
+                color="primary"
+                [disabled]="remarksForm.invalid"
+            >
+                Submit
+            </button>
+        </form>
+    </mat-step>
+</mat-stepper>
+<button
+    (click)="addBonus()"
+    class="addBtn"
+    mat-raised-button
+    color="primary"
+    [disabled]="orders.length < 1 || socialForm.invalid || remarksForm.invalid"
+>
+    Add Bonus
+</button>

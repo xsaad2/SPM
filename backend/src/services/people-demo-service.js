@@ -2,7 +2,7 @@ exports.getPeople = async function(){
     return [
         {
             id: 'zg6j7glicrg88pyy',
-            name: 'Bobby',
+            name: 'Bobby11',
             favourite_color: {
                 name: 'Pickle Green',
                 code: '#b9df8d'

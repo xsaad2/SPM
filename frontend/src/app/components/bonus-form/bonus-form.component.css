@@ -1,0 +1,41 @@
+
+  mat-form-field{
+    display: inline-block;
+    justify-content: center;
+    justify-items: center;
+    width: 350px;
+    padding: 5px;
+  }
+  .submitBtn{
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .addBtn{
+    margin-left: 80%;
+  }
+  .container{
+    height: calc(100vh - 64px);
+    display: flex;
+    overflow: auto;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  td, th {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+  }
+  th{
+    background-color: rgb(196, 196, 196);
+  }
+
+  ::ng-deep .custom-snackbar{
+    background-color: #4CAF50 !important;
+    color: white;
+  }
+  ::ng-deep .custom-snackbar .mat-button-wrapper {
+    color: white;
+  }

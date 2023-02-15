@@ -1,11 +1,51 @@
-<mat-toolbar color="primary">
-  <mat-icon class="app-icon">token</mat-icon>
-  <span class="appName">Integration Architectures</span>
-  <button class="menu-button" mat-flat-button color="primary" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" [routerLink]="button.routerLink" *ngFor="let button of buttons">{{button.title}}</button>
-  <!-- *ngFor specifies a foreach loop for rendering an element repeatedly; in double curly braces {{}} javascript-expressions/variables can be printed out to the page -->
-  <span class="spacer"></span>
-  <span *ngIf="user" class="user-displayname" >{{user.firstname + ' ' + user.lastname}}</span> <!-- *ngIf contains a condition, which has to be met before this element is rendered -->
-  <button mat-icon-button aria-label="Logout button" (click)="handleLogout()">
-    <mat-icon>logout</mat-icon>
-  </button>
+<mat-toolbar class="toolbar" style="z-index: 999; position: fixed">
+    <button mat-button (click)="sidenav.toggle()">
+        <mat-icon> menu </mat-icon>
+    </button>
+    <span class="appName">SPM</span>
+
+    <!-- *ngFor specifies a foreach loop for rendering an element repeatedly; in double curly braces {{}} javascript-expressions/variables can be printed out to the page -->
+    <span class="spacer"></span>
+    <span *ngIf="user" class="user-displayname">{{
+        user.firstname + " " + user.lastname
+    }}</span>
+    <!-- *ngIf contains a condition, which has to be met before this element is rendered -->
+    <button mat-icon-button aria-label="Logout button" (click)="handleLogout()">
+        <mat-icon>logout</mat-icon>
+    </button>
 </mat-toolbar>
+
+<!-- Side navigation drawer-->
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+        class="sidenav custom-sidenav"
+        #sidenav
+        mode="side"
+        opened="true"
+        o
+    >
+        <mat-nav-list class="custom-sidenav-items">
+            <a
+                mat-list-item
+                routerLinkActive="selected-item"
+                [routerLinkActiveOptions]="{ exact: true }"
+                [routerLink]="button.routerLink"
+                *ngFor="let button of buttons"
+            >
+                <span
+                    matBadgeOverlap="false"
+                    matBadgePosition="before"
+                    class="matbadge"
+                    *ngIf="button.title === 'Pending Bonuses' && !hidden"
+                    [matBadge]="bonuses.length"
+                    matBadgeColor="warn"
+                    [matBadgeHidden]="hidden"
+                ></span>
+                {{ button.title }}
+            </a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>

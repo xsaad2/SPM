@@ -1,0 +1,28 @@
+.container{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.mat-elevation-z8{
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-left: 10px;
+    margin-top: 10px;
+}
+.paginator{
+    display: block;
+    width: 100%;
+    background-color: rgb(255, 255, 255);   
+    margin-left: 10px; 
+}
+
+.mat-header-cell{
+    background-color: #ADD8E6;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+.mat-row:hover{
+    background-color: rgb(215, 209, 201);
+}

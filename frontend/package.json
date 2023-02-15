@@ -10,6 +10,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e"
   },
+  "sideEffects": false,
   "private": true,
   "dependencies": {
     "@angular/animations": "~13.3.11",

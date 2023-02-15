@@ -1,0 +1,186 @@
+<div class="container">
+    <h2>Bonus Computation sheet</h2>
+    <table>
+        <div class="detailscont">
+            <tr>
+                <td><b> Full Name:</b></td>
+                <td>{{ data.bonus.fullName }}</td>
+            </tr>
+            <tr>
+                <td><b> Employee ID:</b></td>
+                <td>{{ data.bonus.employeeId }}</td>
+            </tr>
+            <tr>
+                <td><b> Departement:</b></td>
+                <td>{{ data.bonus.unit }}</td>
+            </tr>
+            <tr>
+                <td><b> Year of Performance:</b></td>
+                <td>{{ data.bonus.yearOfPerf }}</td>
+            </tr>
+            <tr>
+                <td><b> Job Title:</b></td>
+                <td>{{ data.bonus.jobTitle }}</td>
+            </tr>
+        </div>
+        <tr>
+            <div class="orderscont">
+                <div>
+                    <td><b>A- Orders Evaluation</b></td>
+                </div>
+                <td>
+                    <table id="orderstab" class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Client Name</th>
+                                <th>Client Rating</th>
+                                <th>Number of Items</th>
+                                <th>Bonus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let order of data.bonus.orders">
+                                <td>{{ order.productName }}</td>
+                                <td>{{ order.clientName }}</td>
+                                <td>{{ order.clientRating }}</td>
+                                <td>{{ order.nbrOfItems }}</td>
+                                <td>{{ order.bonusAmount }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+            </div>
+        </tr>
+        <div>
+            <tr>
+                <td><b> Total Order Bonus:</b></td>
+                <td>{{ data.bonus.totalOrderBonus }}</td>
+            </tr>
+        </div>
+        <tr>
+            <div class="socialcont">
+                <div>
+                    <td><b>B- Social Performance Evaluation:</b></td>
+                </div>
+                <td>
+                    <ul>
+                        <table id="socialtab">
+                            <thead>
+                                <tr>
+                                    <th>Social Per</th>
+                                    <th>Value</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Leadership</td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.leadership
+                                                .value
+                                        }}
+                                    </td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.leadership
+                                                .amount
+                                        }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Openness</td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.openness.value
+                                        }}
+                                    </td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.openness.amount
+                                        }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Behaviour</td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.behaviour.value
+                                        }}
+                                    </td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.behaviour
+                                                .amount
+                                        }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Attitude</td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.attitude.value
+                                        }}
+                                    </td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.attitude.amount
+                                        }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Communication</td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.communication
+                                                .value
+                                        }}
+                                    </td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.communication
+                                                .amount
+                                        }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Integrity</td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.integrity.value
+                                        }}
+                                    </td>
+                                    <td>
+                                        {{
+                                            data.bonus.socialPer.integrity
+                                                .amount
+                                        }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                </td>
+            </div>
+        </tr>
+        <div>
+            <tr>
+                <td><b> Total Social Bonus:</b></td>
+                <td>
+                    {{ data.bonus.socialPer.totalbonusAmount }}
+                </td>
+            </tr>
+        </div>
+        <div class="summary">
+            <tr>
+                <td><b> Total Bonus:</b></td>
+                <td>{{ data.bonus.totalBonus }}</td>
+            </tr>
+            <tr>
+                <td><b> Remarks:</b></td>
+                <td>{{ data.bonus.remarks }}</td>
+            </tr>
+        </div>
+    </table>
+</div>
