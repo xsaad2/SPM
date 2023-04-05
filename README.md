@@ -12,5 +12,5 @@ You can log in with username *admin* and the password, which is preconfigured at
 In case you changed and forgot your password, you can still empty the collection 'user' in the database and restart the backend. Then a new admin user will be created upon restart/redeployment.
 
 
-#Project report:
+## Project report:
 https://docs.google.com/document/d/1RLFNmNiw87ICa1LGyVDuFmApChQhBLeMqJMSJIyYnds/edit?usp=sharing
